@@ -1,0 +1,104 @@
+/* Custom Styling for University Research Opportunity Portal */
+body {
+  font-family: 'Inter', system-ui, -apple-system, sans-serif;
+  background-color: #f4f6f9 !important;
+  color: #2b2d42;
+}
+
+/* Navbar */
+.navbar-brand {
+  letter-spacing: -0.3px;
+}
+
+/* Stat Cards */
+.stat-card {
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.stat-card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.08) !important;
+}
+
+.stat-icon {
+  width: 54px;
+  height: 54px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Opportunity Cards */
+.opportunity-card {
+  border: none;
+  border-radius: 12px;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  overflow: hidden;
+  background: #ffffff;
+}
+
+.opportunity-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 0.75rem 1.5rem rgba(0, 0, 0, 0.08) !important;
+}
+
+.opportunity-card .card-header-status {
+  height: 6px;
+}
+
+.status-indicator-open {
+  background-color: #198754;
+}
+
+.status-indicator-closed {
+  background-color: #6c757d;
+}
+
+.card-title {
+  color: #1e293b;
+  line-height: 1.35;
+}
+
+.badge-skill {
+  background-color: #f1f5f9;
+  color: #475569;
+  font-weight: 500;
+  border: 1px solid #e2e8f0;
+}
+
+.deadline-badge {
+  font-size: 0.825rem;
+}
+
+/* Buttons & Inputs */
+.btn-primary {
+  background-color: #0d6efd;
+  border-color: #0d6efd;
+}
+
+.btn-primary:hover {
+  background-color: #0b5ed7;
+  border-color: #0a58ca;
+}
+
+.form-control:focus, .form-select:focus {
+  border-color: #0d6efd;
+  box-shadow: 0 0 0 0.25rem rgba(13, 110, 253, 0.15);
+}
+
+/* Modal tweaks */
+.modal-content {
+  border-radius: 14px;
+  overflow: hidden;
+}
+
+/* Custom Scrollbar for Modal Textarea */
+textarea.form-control {
+  resize: vertical;
+}
+
+/* Empty State */
+.empty-state-icon {
+  font-size: 3.5rem;
+  color: #cbd5e1;
+}

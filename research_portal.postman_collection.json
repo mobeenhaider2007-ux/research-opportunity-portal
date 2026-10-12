@@ -1,0 +1,382 @@
+{
+  "info": {
+    "_postman_id": "c9a8f2e1-4b32-4d91-8e5f-123456789abc",
+    "name": "University Research Opportunity Portal API Tests",
+    "description": "Postman Collection (v2.1) covering mandatory REST API test cases for Computer Networks (CN) Assignment 01.",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "http://localhost:5050/api",
+      "type": "string"
+    },
+    {
+      "key": "createdId",
+      "value": "1",
+      "type": "string"
+    },
+    {
+      "key": "deleteId",
+      "value": "3",
+      "type": "string"
+    }
+  ],
+  "item": [
+    {
+      "name": "1. Create Opportunity 1 (Quantum Network Security)",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              "pm.test('Status code is 201 Created', function () {",
+              "    pm.response.to.have.status(201);",
+              "});",
+              "pm.test('Response returns created opportunity object with ID', function () {",
+              "    var jsonData = pm.response.json();",
+              "    pm.expect(jsonData.success).to.eql(true);",
+              "    pm.expect(jsonData.data).to.have.property('id');",
+              "    pm.collectionVariables.set('createdId', jsonData.data.id);",
+              "});"
+            ],
+            "type": "text/javascript"
+          }
+        }
+      ],
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"title\": \"Quantum Network Protocol Design\",\n  \"description\": \"Investigating quantum key distribution (QKD) and repeater placement strategies in next-generation high-speed university backbones.\",\n  \"research_area\": \"Quantum Cryptography\",\n  \"faculty_name\": \"Dr. Aris Thorne\",\n  \"department\": \"Computer Science & Engineering\",\n  \"required_skills\": \"Python, C++, NS-3, Quantum Mechanics\",\n  \"available_positions\": 3,\n  \"application_deadline\": \"2026-11-15\",\n  \"status\": \"Open\"\n}"
+        },
+        "url": {
+          "raw": "{{baseUrl}}/opportunities",
+          "host": ["{{baseUrl}}"],
+          "path": ["opportunities"]
+        }
+      }
+    },
+    {
+      "name": "2. Create Opportunity 2 (Deep Learning for Networks)",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              "pm.test('Status code is 201 Created', function () {",
+              "    pm.response.to.have.status(201);",
+              "});",
+              "pm.test('Returns successful response structure', function () {",
+              "    var jsonData = pm.response.json();",
+              "    pm.expect(jsonData.success).to.eql(true);",
+              "});"
+            ],
+            "type": "text/javascript"
+          }
+        }
+      ],
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"title\": \"AI-Driven BGP Anomaly Detection\",\n  \"description\": \"Building real-time deep learning pipelines to monitor inter-domain routing instabilities.\",\n  \"research_area\": \"Network Security & AI\",\n  \"faculty_name\": \"Dr. Marcus Vance\",\n  \"department\": \"Cybersecurity & Network Systems\",\n  \"required_skills\": \"Python, PyTorch, Wireshark, BGP\",\n  \"available_positions\": 2,\n  \"application_deadline\": \"2026-12-01\",\n  \"status\": \"Open\"\n}"
+        },
+        "url": {
+          "raw": "{{baseUrl}}/opportunities",
+          "host": ["{{baseUrl}}"],
+          "path": ["opportunities"]
+        }
+      }
+    },
+    {
+      "name": "3. Create Opportunity 3 (Temporary Post for Deletion)",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              "pm.test('Status code is 201 Created', function () {",
+              "    pm.response.to.have.status(201);",
+              "});",
+              "pm.test('Stores deleteId variable for subsequent tests', function () {",
+              "    var jsonData = pm.response.json();",
+              "    pm.expect(jsonData.data).to.have.property('id');",
+              "    pm.collectionVariables.set('deleteId', jsonData.data.id);",
+              "});"
+            ],
+            "type": "text/javascript"
+          }
+        }
+      ],
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"title\": \"Experimental Wireless Channel Modeling\",\n  \"description\": \"Temporary research position to evaluate deletion workflow.\",\n  \"research_area\": \"Wireless Communications\",\n  \"faculty_name\": \"Prof. Elena Rostova\",\n  \"department\": \"Electrical & Computer Engineering\",\n  \"required_skills\": \"MATLAB, RF Engineering\",\n  \"available_positions\": 1,\n  \"application_deadline\": \"2026-10-15\",\n  \"status\": \"Open\"\n}"
+        },
+        "url": {
+          "raw": "{{baseUrl}}/opportunities",
+          "host": ["{{baseUrl}}"],
+          "path": ["opportunities"]
+        }
+      }
+    },
+    {
+      "name": "4. Get All Opportunities",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              "pm.test('Status code is 200 OK', function () {",
+              "    pm.response.to.have.status(200);",
+              "});",
+              "pm.test('Returns an array of opportunities', function () {",
+              "    var jsonData = pm.response.json();",
+              "    pm.expect(jsonData.success).to.eql(true);",
+              "    pm.expect(jsonData.data).to.be.an('array');",
+              "    pm.expect(jsonData.data.length).to.be.above(0);",
+              "});"
+            ],
+            "type": "text/javascript"
+          }
+        }
+      ],
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "{{baseUrl}}/opportunities",
+          "host": ["{{baseUrl}}"],
+          "path": ["opportunities"]
+        }
+      }
+    },
+    {
+      "name": "5. Get Single Opportunity by ID",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              "pm.test('Status code is 200 OK', function () {",
+              "    pm.response.to.have.status(200);",
+              "});",
+              "pm.test('Returns correct single opportunity details', function () {",
+              "    var jsonData = pm.response.json();",
+              "    pm.expect(jsonData.success).to.eql(true);",
+              "    pm.expect(jsonData.data.id).to.eql(parseInt(pm.collectionVariables.get('createdId')));",
+              "});"
+            ],
+            "type": "text/javascript"
+          }
+        }
+      ],
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "{{baseUrl}}/opportunities/{{createdId}}",
+          "host": ["{{baseUrl}}"],
+          "path": ["opportunities", "{{createdId}}"]
+        }
+      }
+    },
+    {
+      "name": "6. Update Opportunity Details",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              "pm.test('Status code is 200 OK', function () {",
+              "    pm.response.to.have.status(200);",
+              "});",
+              "pm.test('Validates updated field values', function () {",
+              "    var jsonData = pm.response.json();",
+              "    pm.expect(jsonData.success).to.eql(true);",
+              "    pm.expect(jsonData.data.available_positions).to.eql(5);",
+              "});"
+            ],
+            "type": "text/javascript"
+          }
+        }
+      ],
+      "request": {
+        "method": "PUT",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"available_positions\": 5,\n  \"required_skills\": \"Python, C++, NS-3, Quantum Mechanics, Rust\"\n}"
+        },
+        "url": {
+          "raw": "{{baseUrl}}/opportunities/{{createdId}}",
+          "host": ["{{baseUrl}}"],
+          "path": ["opportunities", "{{createdId}}"]
+        }
+      }
+    },
+    {
+      "name": "7. Close Opportunity Status",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              "pm.test('Status code is 200 OK', function () {",
+              "    pm.response.to.have.status(200);",
+              "});",
+              "pm.test('Status correctly updated to Closed', function () {",
+              "    var jsonData = pm.response.json();",
+              "    pm.expect(jsonData.success).to.eql(true);",
+              "    pm.expect(jsonData.data.status).to.eql('Closed');",
+              "});"
+            ],
+            "type": "text/javascript"
+          }
+        }
+      ],
+      "request": {
+        "method": "PUT",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"status\": \"Closed\"\n}"
+        },
+        "url": {
+          "raw": "{{baseUrl}}/opportunities/{{createdId}}",
+          "host": ["{{baseUrl}}"],
+          "path": ["opportunities", "{{createdId}}"]
+        }
+      }
+    },
+    {
+      "name": "8. Delete Opportunity",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              "pm.test('Status code is 200 OK', function () {",
+              "    pm.response.to.have.status(200);",
+              "});",
+              "pm.test('Confirms successful deletion', function () {",
+              "    var jsonData = pm.response.json();",
+              "    pm.expect(jsonData.success).to.eql(true);",
+              "});"
+            ],
+            "type": "text/javascript"
+          }
+        }
+      ],
+      "request": {
+        "method": "DELETE",
+        "header": [],
+        "url": {
+          "raw": "{{baseUrl}}/opportunities/{{deleteId}}",
+          "host": ["{{baseUrl}}"],
+          "path": ["opportunities", "{{deleteId}}"]
+        }
+      }
+    },
+    {
+      "name": "9. Get Deleted Opportunity (404 Not Found)",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              "pm.test('Status code is 404 Not Found', function () {",
+              "    pm.response.to.have.status(404);",
+              "});",
+              "pm.test('Returns 404 error structure', function () {",
+              "    var jsonData = pm.response.json();",
+              "    pm.expect(jsonData.success).to.eql(false);",
+              "    pm.expect(jsonData.error).to.have.property('message');",
+              "});"
+            ],
+            "type": "text/javascript"
+          }
+        }
+      ],
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "{{baseUrl}}/opportunities/{{deleteId}}",
+          "host": ["{{baseUrl}}"],
+          "path": ["opportunities", "{{deleteId}}"]
+        }
+      }
+    },
+    {
+      "name": "10. Create Opportunity with Invalid Data (400 Bad Request)",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              "pm.test('Status code is 400 Bad Request', function () {",
+              "    pm.response.to.have.status(400);",
+              "});",
+              "pm.test('Returns validation error details', function () {",
+              "    var jsonData = pm.response.json();",
+              "    pm.expect(jsonData.success).to.eql(false);",
+              "    pm.expect(jsonData.error.message).to.include('Validation failed');",
+              "    pm.expect(jsonData.error.details).to.be.an('array');",
+              "});"
+            ],
+            "type": "text/javascript"
+          }
+        }
+      ],
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"title\": \"\",\n  \"available_positions\": -5,\n  \"application_deadline\": \"invalid-date-format\"\n}"
+        },
+        "url": {
+          "raw": "{{baseUrl}}/opportunities",
+          "host": ["{{baseUrl}}"],
+          "path": ["opportunities"]
+        }
+      }
+    }
+  ]
+}

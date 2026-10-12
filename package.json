@@ -1,0 +1,29 @@
+{
+  "name": "university-research-opportunity-portal",
+  "version": "1.0.0",
+  "description": "University Research Opportunity Portal - CN Assignment 01",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "dev": "nodemon server.js",
+    "db:setup": "node scripts/initDb.js"
+  },
+  "keywords": [
+    "express",
+    "mysql2",
+    "bootstrap5",
+    "rest-api",
+    "postman"
+  ],
+  "author": "Computer Networks Student",
+  "license": "ISC",
+  "dependencies": {
+    "cors": "^2.8.5",
+    "dotenv": "^16.4.5",
+    "express": "^4.19.2",
+    "mysql2": "^3.9.7"
+  },
+  "devDependencies": {
+    "nodemon": "^3.1.0"
+  }
+}

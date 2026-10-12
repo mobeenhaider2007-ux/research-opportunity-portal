@@ -163,9 +163,7 @@ An exported Postman Collection **v2.1** (`research_portal.postman_collection.jso
 ---
 
 ## 🔗 Repository & Submission Link
-
-- **GitHub Repository:** `[INSERT_YOUR_GITHUB_REPO_URL_HERE]`
-
+GitHub Repository: https://github.com/mobeenhaider2007-ux/research-opportunity-portal
 ---
 
 ## 📄 License & Attribution
